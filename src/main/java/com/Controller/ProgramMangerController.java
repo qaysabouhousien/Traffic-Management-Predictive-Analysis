@@ -35,4 +35,12 @@ public class   ProgramMangerController {
         return programMangerService.saveUser(programManger);
     }
 
+    @RequestMapping(value = "/Login" , method  = RequestMethod.POST)
+    public int Login(@RequestBody ProgramManger user){
+        return programMangerService.logIn(user);
+    }
+
+
+
+
 }

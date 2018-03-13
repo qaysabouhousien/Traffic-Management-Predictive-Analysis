@@ -1,6 +1,7 @@
 package com.Entity;
 
 import java.sql.Date;
+import java.util.Objects;
 
 public abstract class User {
 
@@ -46,5 +47,21 @@ public abstract class User {
 
     public void setRegistration_date(Date registration_date) {
         this.registration_date = registration_date;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return Objects.equals(getName(), user.getName()) &&
+                Objects.equals(getPassword(), user.getPassword());
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getName(), getPassword());
     }
 }

@@ -44,5 +44,12 @@ public class ProgramMangerService {
     }
 
 
+    public int logIn(User user){
+        User userInDb = programMangerDao.getUserByName(user.getName());
+        if (user.equals(userInDb))
+            return 1;
+        return -1;
+    }
+
 
 }

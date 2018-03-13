@@ -3,6 +3,7 @@ package com.DAO;
 import com.Entity.Admin;
 import com.Entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -56,5 +57,16 @@ public class AdminDao implements UserDao{
                                 preparedStatement.setString(2,user.getPassword());
                             }
                             );
+    }
+
+    @Override
+    public User getUserByName(String name) {
+
+        final String query = "SELECT * FROM admin_user where user_name = ? LIMIT 1";
+        try {
+            return jdbcTemplate.queryForObject(query, (resultSet, i) -> getUser(resultSet), name);
+        }catch (EmptyResultDataAccessException e){
+            return null;
+        }
     }
 }

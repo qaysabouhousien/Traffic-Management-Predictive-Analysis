@@ -34,5 +34,10 @@ public class AdminController {
     }
 
 
+    @RequestMapping(value = "/Login", method = RequestMethod.POST)
+    public int logIn(@RequestBody Admin user){
+        return adminService.login(user);
+    }
+
 
 }

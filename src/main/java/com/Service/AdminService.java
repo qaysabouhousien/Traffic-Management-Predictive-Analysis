@@ -41,4 +41,12 @@ public class AdminService {
         return -1;
     }
 
+    public int login(Admin user) {
+
+        User userInDB = adminDao.getUserByName(user.getName());
+
+        if (user.equals(userInDB))
+            return 1;
+        return -1;
+    }
 }

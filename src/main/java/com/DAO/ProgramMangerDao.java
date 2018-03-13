@@ -3,6 +3,7 @@ package com.DAO;
 import com.Entity.ProgramManger;
 import com.Entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -58,6 +59,18 @@ public class ProgramMangerDao implements UserDao{
                                         });
     }
 
+    @Override
+    public User getUserByName(String name) {
+        final String query = "SELECT * FROM program_manger WHERE user_name= ? LIMIT 1";
+
+
+
+        try {
+            return jdbcTemplate.queryForObject(query, (resultSet, i) -> getUser(resultSet), name);
+        }catch (EmptyResultDataAccessException e){
+            return null;
+        }
+    }
 
 
 }

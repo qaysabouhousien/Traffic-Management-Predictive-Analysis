@@ -17,6 +17,7 @@ public interface UserDao{
 
     User getUser(ResultSet resultSet) throws SQLException;
 
-
     int addUser(User user);
+
+    User getUserByName(String name);
 }
