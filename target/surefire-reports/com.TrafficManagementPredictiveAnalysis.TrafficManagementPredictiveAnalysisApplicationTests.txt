@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.TrafficManagementPredictiveAnalysis.TrafficManagementPredictiveAnalysisApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.655 s - in com.TrafficManagementPredictiveAnalysis.TrafficManagementPredictiveAnalysisApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 62.828 s - in com.TrafficManagementPredictiveAnalysis.TrafficManagementPredictiveAnalysisApplicationTests

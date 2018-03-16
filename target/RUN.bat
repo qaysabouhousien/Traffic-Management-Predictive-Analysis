@@ -1,1 +1,0 @@
-java -jar Traffic-Management-Predictive-Analysis-0.0.1-SNAPSHOT.jar
