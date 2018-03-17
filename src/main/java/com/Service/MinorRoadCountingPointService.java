@@ -2,6 +2,7 @@ package com.Service;
 
 
 import com.DAO.MajorRoadCountingPointDao;
+import com.DAO.MinorRoadCountingPointDao;
 import com.Entity.CountingPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,22 +10,22 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 
 @Service
-public class MajorRoadCountingPointService {
+public class MinorRoadCountingPointService {
 
     @Autowired
-    MajorRoadCountingPointDao majorRoadCountingPointDao;
+    MinorRoadCountingPointDao minorRoadCountingPointDao;
 
 
     public Collection<CountingPoint> getCountingPoints() {
-            return majorRoadCountingPointDao.getCountingPoints();
+        return minorRoadCountingPointDao.getCountingPoints();
     }
 
     public CountingPoint getCountingPointById(int id) {
-      return majorRoadCountingPointDao.getCountingPointById(id);
+        return minorRoadCountingPointDao.getCountingPointById(id);
     }
 
 
     public Collection<CountingPoint> getRoadCountingPoints(String roadName){
-        return majorRoadCountingPointDao.getRoadCountingPoint(roadName);
+        return minorRoadCountingPointDao.getRoadCountingPoint(roadName);
     }
 }

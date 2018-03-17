@@ -14,5 +14,5 @@ public interface CountingPointDao {
 
     CountingPoint getCountingPoint(ResultSet resultSet) throws SQLException;
 
-
+    Collection<CountingPoint> getRoadCountingPoint(String roadName);
 }

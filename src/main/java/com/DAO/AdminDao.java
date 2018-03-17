@@ -23,17 +23,22 @@ public class AdminDao implements UserDao{
         final String query = "SELECT id,user_name ,password,registration_date " +
                 "FROM admin_user ";
 
-
-        return jdbcTemplate.query(query, (resultSet, i) -> getUser(resultSet));
-
+        try {
+            return jdbcTemplate.query(query, (resultSet, i) -> getUser(resultSet));
+        }catch (EmptyResultDataAccessException e){
+            return null;
+        }
 
     }
     @Override
     public User getUserById(int id) {
 
         final String query = "Select * FROM admin_user WHERE id = ? LIMIT 1";
-
-        return jdbcTemplate.queryForObject(query,(resultSet, i) -> getUser(resultSet),id);
+        try {
+            return jdbcTemplate.queryForObject(query, (resultSet, i) -> getUser(resultSet), id);
+        } catch (EmptyResultDataAccessException e){
+            return null;
+        }
     }
 
     @Override

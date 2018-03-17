@@ -3,6 +3,7 @@ package com.DAO;
 import com.Entity.MajorRoadRowCountData;
 import com.Entity.RowCountData;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -21,8 +22,11 @@ public class MajorRowCountDataDao implements RowCountDataDao {
 
         final String query = "SELECT * From major_roads_row_count_data where CP = ?";
 
-
-        return jdbcTemplate.query(query,(resultSet, i) -> getCountData(resultSet),cp);
+        try {
+            return jdbcTemplate.query(query,(resultSet, i) -> getCountData(resultSet),cp);
+        }catch (EmptyResultDataAccessException e){
+            return null;
+        }
     }
 
     @Override
@@ -54,7 +58,12 @@ public class MajorRowCountDataDao implements RowCountDataDao {
     public Collection<RowCountData> getCountDataByCpAndYear(int cp, int year) {
         final String quey = "SELECT * FROM major_roads_row_count_data where CP = ? AND year = ? ";
 
+        try {
+            return jdbcTemplate.query(quey,(resultSet, i) -> getCountData(resultSet),cp,year);
 
-        return jdbcTemplate.query(quey,(resultSet, i) -> getCountData(resultSet),cp,year);
+        }catch (EmptyResultDataAccessException e){
+            return null;
+        }
+
     }
 }

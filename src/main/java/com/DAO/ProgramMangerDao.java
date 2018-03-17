@@ -27,8 +27,11 @@ public class ProgramMangerDao implements UserDao{
     public User getUserById(int id) {
         final String query = "SELECT * FROM program_manger WHERE id =? LIMIT 1";
 
-
-        return jdbcTemplate.queryForObject(query,(resultSet, i) -> getUser(resultSet),id);
+        try{
+            return jdbcTemplate.queryForObject(query,(resultSet, i) -> getUser(resultSet),id);
+        }catch (EmptyResultDataAccessException e){
+            return null;
+        }
     }
 
     @Override
