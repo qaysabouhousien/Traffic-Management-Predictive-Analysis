@@ -4,7 +4,7 @@ public class ADDFData {
 
     private CountingPoint cp;
     private int year;
-    private String estimationMenthod;
+    private String estimationMethod;
     private String estimationMethodDetailed;
     private int fdPC;
     private int fd2WMV;
@@ -41,11 +41,11 @@ public class ADDFData {
     }
 
     public String getEstimationMenthod() {
-        return estimationMenthod;
+        return estimationMethod;
     }
 
-    public void setEstimationMenthod(String estimationMenthod) {
-        this.estimationMenthod = estimationMenthod;
+    public void setEstimationMenthod(String estimationMethod) {
+        this.estimationMethod = estimationMethod;
     }
 
     public String getEstimationMethodDetailed() {

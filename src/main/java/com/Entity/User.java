@@ -58,10 +58,5 @@ public abstract class User {
         return Objects.equals(getName(), user.getName()) &&
                 Objects.equals(getPassword(), user.getPassword());
     }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(getName(), getPassword());
-    }
+    
 }

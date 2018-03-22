@@ -3,7 +3,7 @@ package com.Entity;
 
 public class TrafficCount {
 
-    private CountingPoint cp;
+    private int cp;
     private int year;
     private double pc;
     private double twoWMV;
@@ -22,11 +22,11 @@ public class TrafficCount {
     public TrafficCount(){}
 
 
-    public CountingPoint getCp() {
+    public int getCp() {
         return cp;
     }
 
-    public void setCp(CountingPoint cp) {
+    public void setCp(int cp) {
         this.cp = cp;
     }
 

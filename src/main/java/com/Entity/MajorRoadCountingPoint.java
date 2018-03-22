@@ -31,7 +31,7 @@ public class MajorRoadCountingPoint extends CountingPoint{
         return aJunction;
     }
 
-    public void setaJunction(String aJunction) {
+    public void setAJunction(String aJunction) {
         this.aJunction = aJunction;
     }
 
@@ -39,7 +39,7 @@ public class MajorRoadCountingPoint extends CountingPoint{
         return bJunction;
     }
 
-    public void setbJunction(String bJunction) {
+    public void setBJunction(String bJunction) {
         this.bJunction = bJunction;
     }
 
@@ -73,7 +73,7 @@ public class MajorRoadCountingPoint extends CountingPoint{
         return aRefN;
     }
 
-    public void setaRefN(double aRefN) {
+    public void setARefN(double aRefN) {
         this.aRefN = aRefN;
     }
 
@@ -81,7 +81,7 @@ public class MajorRoadCountingPoint extends CountingPoint{
         return bRefE;
     }
 
-    public void setbRefE(double bRefE) {
+    public void setBRefE(double bRefE) {
         this.bRefE = bRefE;
     }
 
@@ -89,7 +89,7 @@ public class MajorRoadCountingPoint extends CountingPoint{
         return bRefN;
     }
 
-    public void setbRefN(double bRefN) {
+    public void setBRefN(double bRefN) {
         this.bRefN = bRefN;
     }
 }

@@ -4,7 +4,6 @@ com\Controller\MajorRoadCountingPointController.class
 com\Entity\MinorRoadRowCountData.class
 com\Entity\RowCountData.class
 com\Service\AdminService.class
-com\Controller\IndexController.class
 com\Entity\MajorRoadCountingPoint.class
 com\Service\MajorRoadRowCountDataService.class
 com\DAO\CountingPointDao.class

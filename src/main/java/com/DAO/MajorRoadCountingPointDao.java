@@ -49,15 +49,15 @@ public class MajorRoadCountingPointDao implements CountingPointDao {
         cp.setsRefLatitude(resultSet.getDouble("s_ref_latitude"));
         cp.setsRefLongitude(resultSet.getDouble("s_ref_longitude"));
         cp.setRoad(resultSet.getString("road"));
-        cp.setaJunction(resultSet.getString("a_junction"));
-        cp.setbJunction(resultSet.getString("b_junction"));
+        cp.setAJunction(resultSet.getString("a_junction"));
+        cp.setBJunction(resultSet.getString("b_junction"));
         cp.setRoadCategory(resultSet.getString("road_category"));
         cp.setLinkLengthMiles(resultSet.getDouble("link_length_miles"));
         cp.setLinkLengthKm(resultSet.getDouble("link_length_km"));
         cp.setaRefE(resultSet.getDouble("a_ref_e"));
-        cp.setaRefN(resultSet.getDouble("a_ref_n"));
-        cp.setbRefE(resultSet.getDouble("b_ref_e"));
-        cp.setbRefN(resultSet.getDouble("b_ref_n"));
+        cp.setARefN(resultSet.getDouble("a_ref_n"));
+        cp.setBRefE(resultSet.getDouble("b_ref_e"));
+        cp.setBRefN(resultSet.getDouble("b_ref_n"));
         return cp;
     }
 
