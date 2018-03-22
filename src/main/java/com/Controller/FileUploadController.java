@@ -16,8 +16,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 @RestController
-@RequestMapping("/DataSet")
-public class DataSetController {
+@RequestMapping("/Upload")
+public class FileUploadController {
 
     @Autowired
     DataSetService dataSetService;
@@ -28,7 +28,7 @@ public class DataSetController {
     }
 
 
-    @PostMapping(value = "/upload") // //new annotation since 4.3
+    @PostMapping(value = "/SaveFile") // //new annotation since 4.3
     public int singleFileUpload(@RequestParam("file") MultipartFile file) {
         return dataSetService.saveFile(file);
     }
