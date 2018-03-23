@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.renjin:renjin-nmath:0.8.2341">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/renjin/renjin-nmath/0.8.2341/renjin-nmath-0.8.2341.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/renjin/renjin-nmath/0.8.2341/renjin-nmath-0.8.2341-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/renjin/renjin-nmath/0.8.2341/renjin-nmath-0.8.2341-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
