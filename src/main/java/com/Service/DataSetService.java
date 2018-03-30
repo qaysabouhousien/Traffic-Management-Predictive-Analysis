@@ -2,6 +2,7 @@ package com.Service;
 
         import com.DAO.DataSetDao;
         import com.Entity.DataSet;
+        import com.R.Controller.TempController;
         import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.stereotype.Service;
         import org.springframework.web.multipart.MultipartFile;
@@ -43,5 +44,10 @@ public class DataSetService {
         }
 
         return 1;
+    }
+
+    public double startR() {
+        return TempController.StartR();
+
     }
 }

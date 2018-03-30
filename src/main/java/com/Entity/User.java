@@ -12,7 +12,14 @@ public abstract class User {
 
     public User(){}
 
-    public User(String name,String password){
+    public User(String id, String name, String password, Date registration_date) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.registration_date = registration_date;
+    }
+
+    public User(String name, String password){
         this.name = name;
         this.password = password;
     }
@@ -52,11 +59,10 @@ public abstract class User {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return Objects.equals(getName(), user.getName()) &&
-                Objects.equals(getPassword(), user.getPassword());
+        return this.getName().equalsIgnoreCase(user.getName())&&
+                this.getPassword().equals(user.getPassword());
     }
     
 }

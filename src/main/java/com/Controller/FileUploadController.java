@@ -33,5 +33,8 @@ public class FileUploadController {
         return dataSetService.saveFile(file);
     }
 
-
+    @GetMapping(value = "/StartR")
+    public double startR(){
+        return dataSetService.startR();
+    }
 }
