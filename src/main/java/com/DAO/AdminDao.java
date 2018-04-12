@@ -1,6 +1,7 @@
 package com.DAO;
 
 import com.Entity.Admin;
+import com.Entity.ProgramManger;
 import com.Entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -51,8 +52,7 @@ public class AdminDao implements UserDao{
         return user;
     }
 
-    @Override
-    public int addUser(User user) {
+    public int addAdmin(User user) {
 
         final String query = "INSERT INTO admin_user(user_name,password) VALUES(?,?)";
 
@@ -63,7 +63,21 @@ public class AdminDao implements UserDao{
                             }
                             );
     }
+    public int addManger(User user) {
 
+        final String query = "INSERT INTO program_manger(user_name,password,registration_by) VALUES(?,?,?)";
+
+        ProgramManger programManger = (ProgramManger)user;
+
+
+
+        return jdbcTemplate.update(query,preparedStatement ->
+        {
+            preparedStatement.setString(1,programManger.getName());
+            preparedStatement.setString(2,programManger.getPassword());
+            preparedStatement.setInt   (3,programManger.getRegistrationBy());
+        });
+    }
     @Override
     public User getUserByName(String name) {
 
@@ -74,4 +88,6 @@ public class AdminDao implements UserDao{
             return null;
         }
     }
+
+
 }

@@ -1,0 +1,26 @@
+
+
+library(dplyr)
+library(reshape)
+
+
+query = "SELECT * FROM updated_traffic"
+traffic = sendQuery(query)
+
+
+cp <- traffic %>% filter(CP == 99965)
+
+
+plot(cp[,"year"],cp[,"ALLMV"])
+
+year2016 <- traffic %>% filter(year == 2016)
+
+justyearandall = traffic[,c("year","CP","ALLMV")]
+
+md <- melt(justyearandall, id=(c("year", "CP")))
+
+casted = cast(md,CP~year+variable)
+
+v = as.numeric(casted[6,2:length(casted)])
+timeSeries = ts(v, start = 2000,frequency = 1)
+plot(timeSeries)

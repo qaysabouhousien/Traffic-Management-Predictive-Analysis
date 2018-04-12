@@ -37,11 +37,6 @@ public class ProgramMangerService {
         }
     }
 
-    public int saveUser(User user){
-        if (user instanceof ProgramManger)
-            return programMangerDao.addUser(user);
-        return -1;
-    }
 
 
     public int logIn(User user){

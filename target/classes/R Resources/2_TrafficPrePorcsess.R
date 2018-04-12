@@ -49,7 +49,7 @@ for (i in 1:nrow(updateddata)) {
                 updateddata[i,4],",", updateddata[i,5],",", updateddata[i,6],","
                 , updateddata[i,7],",", updateddata[i,8],",", updateddata[i,9],","
                 , updateddata[i,10],",", updateddata[i,11],",", updateddata[i,12],","
-                , updateddata[i,13],",", updateddata[i,14],",", updateddata[i,5],")")
+                , updateddata[i,13],",", updateddata[i,14],",", updateddata[i,15],")")
   inserted = sendUpdate(query2)
   count = count +1
   print(paste("count : ",count))

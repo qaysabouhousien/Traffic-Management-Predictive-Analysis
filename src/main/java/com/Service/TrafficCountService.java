@@ -18,4 +18,8 @@ public class TrafficCountService {
     public Collection<TrafficCount> getCPTrafficCount(int cp){
         return trafficCountDao.getCPTrafficCount(cp);
     }
+
+    public Collection<TrafficCount> getHighestTrafficCounts(int limit){
+        return trafficCountDao.getHighestTrafficCounts(limit);
+    }
 }

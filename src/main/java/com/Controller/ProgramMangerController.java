@@ -30,10 +30,6 @@ public class   ProgramMangerController {
     }
 
 
-    @RequestMapping(value = "/Save",method = RequestMethod.POST)
-    public int saveUser(@RequestBody ProgramManger programManger){
-        return programMangerService.saveUser(programManger);
-    }
 
     @RequestMapping(value = "/Login" , method  = RequestMethod.POST)
     public int Login(@RequestBody ProgramManger user){

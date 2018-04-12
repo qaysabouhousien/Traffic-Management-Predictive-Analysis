@@ -1,4 +1,4 @@
-
+library(dplyr)
 
 query = paste("SELECT addf.* , c.link_length_km , traffic.*  "
               ," FROM major_road_counting_point c  "
@@ -85,7 +85,7 @@ UpdatedHgv = apply(addfWithTraffic, 1,function(x) computeAddf(x,32))
 addfWithTraffic[,"fd_hgv"] <- round(UpdatedHgv,2)
 
 
-# HGV
+# ALLMV
 UpdatedallMv = apply(addfWithTraffic, 1,function(x) computeAddf(x,33))
 addfWithTraffic[,"fd_all_mv"] <- round(UpdatedallMv,2)
 
@@ -127,15 +127,55 @@ UpdatedaddfWithoutTraffic$CP= addfWithoutTraffic$CP
 UpdatedaddfWithoutTraffic$estimation_method = addfWithoutTraffic$estimation_method
 UpdatedaddfWithoutTraffic$estimation_method_detailed = addfWithoutTraffic$estimation_method_detailed
 
+# UpdatedaddfWithoutTraffic = read.csv("C:/Users/User/Software/Traffic-Management-Predictive-Analysis/src/main/resources/UploadedCSVFiles/UpdatedaddfWithoutTraffic.csv")
+
+
+# insertWithoutTraffic
+query <- "INSERT INTO updated_addf_data_major(fd_PC,fd_2WMV,fd_car,fd_bus,fd_lgv,fd_hgvr2,fd_hgvr3,fd_hgvr4,fd_hgva3,fd_hgva5,fd_hgva6,fd_hgv,fd_all_mv,year,CP,estimation_method,estimation_method_detailed) VALUES("
+count =0
+
+for (i in 1:nrow(UpdatedaddfWithoutTraffic)) {
+  
+  query2 = paste(query, UpdatedaddfWithoutTraffic[i,1],",", UpdatedaddfWithoutTraffic[i,2],",", UpdatedaddfWithoutTraffic[i,3],",", 
+                 UpdatedaddfWithoutTraffic[i,4],",", UpdatedaddfWithoutTraffic[i,5],",", UpdatedaddfWithoutTraffic[i,6],","
+                 , UpdatedaddfWithoutTraffic[i,7],",", UpdatedaddfWithoutTraffic[i,8],",", UpdatedaddfWithoutTraffic[i,9],","
+                 , UpdatedaddfWithoutTraffic[i,10],",", UpdatedaddfWithoutTraffic[i,11],",", UpdatedaddfWithoutTraffic[i,12],","
+                 , UpdatedaddfWithoutTraffic[i,13],",", UpdatedaddfWithoutTraffic[i,14],",", UpdatedaddfWithoutTraffic[i,15],",'",
+                    UpdatedaddfWithoutTraffic[i,16],"',\"", UpdatedaddfWithoutTraffic[i,17],"\")")
+  inserted = sendUpdate(query2)
+  count = count +1
+  print(paste("count : ",count))
+}
 
 
 
 
 
 
+# Inserting With Traffic in two Parts
+addfWithTraffic1st <- addfWithTraffic[1:(nrow(addfWithTraffic)/2),]
+addfWithTraffic2nd <- addfWithTraffic[((nrow(addfWithTraffic)/2)+1) :nrow(addfWithTraffic) ,]
+query <- "INSERT INTO updated_addf_data_major(year,CP,estimation_method,estimation_method_detailed,fd_PC,fd_2WMV,fd_car,fd_bus,fd_lgv,fd_hgvr2,fd_hgvr3,fd_hgvr4,fd_hgva3,fd_hgva5,fd_hgva6,fd_hgv,fd_all_mv) VALUES("
 
-
-
+oldPer = 0
+for (i in 1:nrow(addfWithTraffic2nd)) {
+  
+  query2 = paste(query, addfWithTraffic2nd[i,1],",", addfWithTraffic2nd[i,2],",'", addfWithTraffic2nd[i,3],"',\"", 
+                 addfWithTraffic2nd[i,4],"\",", addfWithTraffic2nd[i,5],",", addfWithTraffic2nd[i,6],","
+                 , addfWithTraffic2nd[i,7],",", addfWithTraffic2nd[i,8],",", addfWithTraffic2nd[i,9],","
+                 , addfWithTraffic2nd[i,10],",", addfWithTraffic2nd[i,11],",", addfWithTraffic2nd[i,12],","
+                 , addfWithTraffic2nd[i,13],",", addfWithTraffic2nd[i,14],",", addfWithTraffic2nd[i,15],",",
+                 addfWithTraffic2nd[i,16],",", addfWithTraffic2nd[i,17],")")
+  inserted = sendUpdate(query2)
+  
+  percent = round((i/nrow(addfWithTraffic2nd))*100,digits = 1)
+  if(percent > oldPer){
+    oldPer = percent
+    print(paste("Percent : ",percent,"%",sep = ""))
+    
+  }
+  
+}
 
 
 

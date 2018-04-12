@@ -18,13 +18,20 @@ public class TrafficCountDao {
     JdbcTemplate jdbcTemplate;
 
     public Collection<TrafficCount> getCPTrafficCount(int cp){
-        final String query = "SELECT * FROM traffic where cp = ?";
+        final String query = "SELECT * FROM updated_traffic where cp = ?";
         try {
             return jdbcTemplate.query(query, ((resultSet, i) -> getTrafficCount(resultSet)), cp);
         }catch (EmptyResultDataAccessException e){
             return null;
         }
     }
+
+
+    public Collection<TrafficCount> getHighestTrafficCounts(int limit){
+        final String query = "SELECT * FROM updated_traffic order by ALLMV DESC LIMIT ?";
+        return jdbcTemplate.query(query,(resultSet, i) -> getTrafficCount(resultSet),limit);
+    }
+
 
     private TrafficCount getTrafficCount(ResultSet resultSet) throws SQLException {
         TrafficCount c = new TrafficCount();

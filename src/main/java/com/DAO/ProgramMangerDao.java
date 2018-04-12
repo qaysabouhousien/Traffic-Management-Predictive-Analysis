@@ -45,22 +45,7 @@ public class ProgramMangerDao implements UserDao{
         return user;
     }
 
-    @Override
-    public int addUser(User user) {
 
-        final String query = "INSERT INTO program_manger(user_name,password,registration_by) VALUES(?,?,?)";
-
-        ProgramManger programManger = (ProgramManger)user;
-
-
-
-        return jdbcTemplate.update(query,preparedStatement ->
-                                        {
-                                            preparedStatement.setString(1,programManger.getName());
-                                            preparedStatement.setString(2,programManger.getPassword());
-                                            preparedStatement.setInt   (3,programManger.getRegistrationBy());
-                                        });
-    }
 
     @Override
     public User getUserByName(String name) {

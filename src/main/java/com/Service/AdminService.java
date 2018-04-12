@@ -3,6 +3,7 @@ package com.Service;
 
 import com.DAO.AdminDao;
 import com.Entity.Admin;
+import com.Entity.ProgramManger;
 import com.Entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
@@ -37,7 +38,9 @@ public class AdminService {
 
     public int saveUser(User user){
         if (user instanceof Admin)
-            return adminDao.addUser(user);
+            return adminDao.addAdmin(user);
+        if(user instanceof ProgramManger)
+            return adminDao.addManger(user);
         return -1;
     }
 

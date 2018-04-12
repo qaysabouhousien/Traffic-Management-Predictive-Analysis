@@ -12,7 +12,6 @@ import java.util.Collection;
 
 @RestController
 @RequestMapping("/Admin")
-@CrossOrigin(origins = "*")
 public class AdminController {
 
     @Autowired
@@ -20,20 +19,24 @@ public class AdminController {
 
 
     @RequestMapping(method = RequestMethod.GET)
-    public Collection<User> getAllUsers(){
+    public Collection<User> getAllUsers() {
         return adminService.getUsers();
     }
 
     @RequestMapping(value = "/{id}" ,method = RequestMethod.GET)
-    public User getUserById(@PathVariable("id") int id){
+    public User getUserById(@PathVariable("id") int id) {
         return adminService.getUserById(id);
     }
 
-    @RequestMapping(value = "/Save",method = RequestMethod.POST)
+    @RequestMapping(value = "/SaveAdmin",method = RequestMethod.POST)
     public int saveUser(@RequestBody Admin user){
         return adminService.saveUser(user);
     }
 
+    @PostMapping(value = "/SaveManger")
+    public int saveUser(@RequestBody ProgramManger user){
+        return adminService.saveUser(user);
+    }
 
     @RequestMapping(value = "/Login", method = RequestMethod.POST)
     public int logIn(@RequestBody Admin user){
