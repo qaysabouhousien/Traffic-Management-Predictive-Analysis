@@ -19,7 +19,17 @@ public class AdminService {
 
     public Collection<User> getUsers() {
         try {
-            return adminDao.getUsers();
+            Collection<User> admins = adminDao.getUsers();
+            Collection<User> mangers = adminDao.getMangers();
+            for(User admin :admins){
+                admin.setType("Admin");
+            }
+            for(User manger : mangers){
+                manger.setType("Manger");
+            }
+
+            admins.addAll(mangers);
+            return admins;
         }catch (IncorrectResultSizeDataAccessException e){
             e.printStackTrace();
             return null;

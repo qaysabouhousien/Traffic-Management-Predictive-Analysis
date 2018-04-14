@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.Collection;
 
 @Repository
-public class AdminDao implements UserDao{
+public class AdminDao implements UserDao {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
@@ -26,18 +26,19 @@ public class AdminDao implements UserDao{
 
         try {
             return jdbcTemplate.query(query, (resultSet, i) -> getUser(resultSet));
-        }catch (EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             return null;
         }
 
     }
+
     @Override
     public User getUserById(int id) {
 
         final String query = "Select * FROM admin_user WHERE id = ? LIMIT 1";
         try {
             return jdbcTemplate.queryForObject(query, (resultSet, i) -> getUser(resultSet), id);
-        } catch (EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             return null;
         }
     }
@@ -56,38 +57,46 @@ public class AdminDao implements UserDao{
 
         final String query = "INSERT INTO admin_user(user_name,password) VALUES(?,?)";
 
-        return  jdbcTemplate.update(query,preparedStatement ->
-                            {
-                                preparedStatement.setString(1,user.getName());
-                                preparedStatement.setString(2,user.getPassword());
-                            }
-                            );
+        return jdbcTemplate.update(query, preparedStatement ->
+                {
+                    preparedStatement.setString(1, user.getName());
+                    preparedStatement.setString(2, user.getPassword());
+                }
+        );
     }
+
     public int addManger(User user) {
 
         final String query = "INSERT INTO program_manger(user_name,password,registration_by) VALUES(?,?,?)";
 
-        ProgramManger programManger = (ProgramManger)user;
+        ProgramManger programManger = (ProgramManger) user;
 
 
-
-        return jdbcTemplate.update(query,preparedStatement ->
+        return jdbcTemplate.update(query, preparedStatement ->
         {
-            preparedStatement.setString(1,programManger.getName());
-            preparedStatement.setString(2,programManger.getPassword());
-            preparedStatement.setInt   (3,programManger.getRegistrationBy());
+            preparedStatement.setString(1, programManger.getName());
+            preparedStatement.setString(2, programManger.getPassword());
+            preparedStatement.setInt(3, programManger.getRegistrationBy());
         });
     }
+
     @Override
     public User getUserByName(String name) {
 
         final String query = "SELECT * FROM admin_user where user_name = ? LIMIT 1";
         try {
             return jdbcTemplate.queryForObject(query, (resultSet, i) -> getUser(resultSet), name);
-        }catch (EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             return null;
         }
     }
 
+
+
+
+    public Collection<User> getMangers() {
+        final String query = "SELECT * FROM program_manger";
+        return jdbcTemplate.query(query, ((resultSet, i) -> (getUser(resultSet))));
+    }
 
 }

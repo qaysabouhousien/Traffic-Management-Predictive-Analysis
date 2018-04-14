@@ -18,7 +18,7 @@ public class AdminController {
     AdminService adminService;
 
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/GetAllUsers" ,method = RequestMethod.GET)
     public Collection<User> getAllUsers() {
         return adminService.getUsers();
     }
