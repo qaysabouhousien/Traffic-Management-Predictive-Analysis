@@ -17,18 +17,21 @@ public class AdminController {
     @Autowired
     AdminService adminService;
 
+    @GetMapping()
+    public Collection<User> getAdmins(){return  adminService.getUsers();}
 
-    @RequestMapping(value = "/GetAllUsers" ,method = RequestMethod.GET)
+
+    @GetMapping(value = "/GetAllUsers")
     public Collection<User> getAllUsers() {
-        return adminService.getUsers();
+        return adminService.getAllUsers();
     }
 
-    @RequestMapping(value = "/{id}" ,method = RequestMethod.GET)
+    @GetMapping(value = "/{id}")
     public User getUserById(@PathVariable("id") int id) {
         return adminService.getUserById(id);
     }
 
-    @RequestMapping(value = "/SaveAdmin",method = RequestMethod.POST)
+    @PostMapping(value = "/SaveAdmin")
     public int saveUser(@RequestBody Admin user){
         return adminService.saveUser(user);
     }
@@ -38,7 +41,7 @@ public class AdminController {
         return adminService.saveUser(user);
     }
 
-    @RequestMapping(value = "/Login", method = RequestMethod.POST)
+    @PostMapping(value = "/Login"   )
     public int logIn(@RequestBody Admin user){
         return adminService.login(user);
     }

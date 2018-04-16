@@ -96,7 +96,17 @@ public class AdminDao implements UserDao {
 
     public Collection<User> getMangers() {
         final String query = "SELECT * FROM program_manger";
-        return jdbcTemplate.query(query, ((resultSet, i) -> (getUser(resultSet))));
+        return jdbcTemplate.query(query, ((resultSet, i) -> (getManger(resultSet))));
+    }
+
+    private User getManger(ResultSet resultSet) throws SQLException {
+        ProgramManger user = new ProgramManger();
+        user.setId(resultSet.getString("id"));
+        user.setName(resultSet.getString("user_name"));
+        user.setPassword(resultSet.getString("password"));
+        user.setRegistration_date(resultSet.getDate("registration_date"));
+        user.setRegistrationBy(resultSet.getInt("registration_by"));
+        return user;
     }
 
 }

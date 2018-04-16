@@ -17,7 +17,7 @@ public class   ProgramMangerController {
     ProgramMangerService programMangerService;
 
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping()
     public Collection<User> getAllUsers(){
         return programMangerService.getUsers();
     }

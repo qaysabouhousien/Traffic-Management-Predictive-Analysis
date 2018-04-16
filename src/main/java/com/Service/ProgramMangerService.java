@@ -9,6 +9,7 @@ import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.stereotype.Service;
 
 import javax.jws.soap.SOAPBinding;
+import java.text.ParseException;
 import java.util.Collection;
 
 @Service
@@ -37,12 +38,14 @@ public class ProgramMangerService {
         }
     }
 
-
-
     public int logIn(User user){
         User userInDb = programMangerDao.getUserByName(user.getName());
         if (user.equals(userInDb))
-            return 1;
+            try {
+                return Integer.parseInt(userInDb.getId());
+            }catch (NumberFormatException e){
+                System.out.println(e.getLocalizedMessage());
+            }
         return -1;
     }
 

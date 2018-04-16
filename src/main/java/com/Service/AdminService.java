@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.util.Collection;
 
 @Service
@@ -19,14 +20,18 @@ public class AdminService {
 
     public Collection<User> getUsers() {
         try {
+            return adminDao.getUsers();
+        }catch(IncorrectResultSizeDataAccessException e){
+            e.printStackTrace();
+            return null;
+        }    }
+
+    public Collection<User> getAllUsers(){
+        try {
             Collection<User> admins = adminDao.getUsers();
             Collection<User> mangers = adminDao.getMangers();
-            for(User admin :admins){
-                admin.setType("Admin");
-            }
-            for(User manger : mangers){
-                manger.setType("Manger");
-            }
+            admins.stream().forEach(admin -> admin.setType("Admin"));
+            mangers.stream().forEach(manger -> manger.setType("Manger"));
 
             admins.addAll(mangers);
             return admins;
@@ -36,6 +41,7 @@ public class AdminService {
 
         }
     }
+
     public User getUserById(int id) {
 
         try {
@@ -59,7 +65,12 @@ public class AdminService {
         User userInDB = adminDao.getUserByName(user.getName());
 
         if (user.equals(userInDB))
-            return 1;
+            try {
+                return Integer.parseInt(userInDB.getId());
+            }catch (NumberFormatException e){
+                System.out.println(e.getLocalizedMessage());
+            }
+
         return -1;
     }
 }

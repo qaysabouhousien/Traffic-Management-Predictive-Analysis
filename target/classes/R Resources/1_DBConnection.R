@@ -3,7 +3,7 @@ library(RMySQL)
 library(DBI)
 
 
-con <- dbConnect(RMySQL::MySQL(),user="root", password='root1234',
+con <- dbConnect(RMySQL::MySQL(),user="root", password='1234',
                  dbname='traffic_management_predictive_analytics', host='localhost')
 
 dbListTables(con)
