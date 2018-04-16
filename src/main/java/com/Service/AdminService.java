@@ -7,6 +7,8 @@ import com.Entity.ProgramManger;
 import com.Entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -17,6 +19,8 @@ public class AdminService {
 
     @Autowired
     AdminDao adminDao;
+    @Autowired
+    BCryptPasswordEncoder passwordEncoder;
 
     public Collection<User> getUsers() {
         try {
@@ -52,25 +56,28 @@ public class AdminService {
         }
     }
 
-    public int saveUser(User user){
-        if (user instanceof Admin)
-            return adminDao.addAdmin(user);
-        if(user instanceof ProgramManger)
-            return adminDao.addManger(user);
+    public int saveUser(User newUser){
+
+        newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
+        if (newUser instanceof Admin)
+            return adminDao.addAdmin(newUser);
+
+        if(newUser instanceof ProgramManger)
+            return adminDao.addManger(newUser);
         return -1;
     }
 
     public int login(Admin user) {
 
         User userInDB = adminDao.getUserByName(user.getName());
-
-        if (user.equals(userInDB))
+        if(userInDB == null) return -1;
+        if (user.getName().equalsIgnoreCase(userInDB.getName())
+                && passwordEncoder.matches(user.getPassword(), userInDB.getPassword()))
             try {
                 return Integer.parseInt(userInDB.getId());
             }catch (NumberFormatException e){
                 System.out.println(e.getLocalizedMessage());
             }
-
         return -1;
     }
 }

@@ -70,8 +70,7 @@ public abstract class User {
     public boolean equals(Object o) {
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return this.getName().equalsIgnoreCase(user.getName())&&
-                this.getPassword().equals(user.getPassword());
+        return this.getName().equalsIgnoreCase(user.getName());
     }
 
     public String getType() {

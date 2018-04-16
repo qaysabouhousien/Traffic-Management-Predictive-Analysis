@@ -6,6 +6,7 @@ import com.Entity.ProgramManger;
 import com.Entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.jws.soap.SOAPBinding;
@@ -17,7 +18,8 @@ public class ProgramMangerService {
 
     @Autowired
     ProgramMangerDao programMangerDao;
-
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     public Collection<User> getUsers() {
         try {
@@ -40,7 +42,8 @@ public class ProgramMangerService {
 
     public int logIn(User user){
         User userInDb = programMangerDao.getUserByName(user.getName());
-        if (user.equals(userInDb))
+        if (user.getName().equalsIgnoreCase(userInDb.getName()) &&
+                passwordEncoder.matches(user.getPassword(),userInDb.getPassword()))
             try {
                 return Integer.parseInt(userInDb.getId());
             }catch (NumberFormatException e){
