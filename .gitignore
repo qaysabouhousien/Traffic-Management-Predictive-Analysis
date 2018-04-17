@@ -16,7 +16,8 @@
 *.tar.gz
 *.rar
 
-
+#Ignoring IDE generated Files
+.idea/
 # RHistory Files
 *.RHistory
 
