@@ -8,10 +8,8 @@ import com.Entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
 import java.util.Collection;
 
 @Service
@@ -79,5 +77,24 @@ public class AdminService {
                 System.out.println(e.getLocalizedMessage());
             }
         return -1;
+    }
+
+    public int deleteAdminById(int id) {
+
+
+        return adminDao.deleteAdminById(id);
+    }
+
+    public int deleteMangerById(int id) {
+
+        return adminDao.deleteMangerByID(id);
+    }
+
+    public int updateUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return user instanceof Admin ?
+                adminDao.updateUserByType(user,"admin_user")
+                : adminDao.updateUserByType(user,"program_manger");
+
     }
 }

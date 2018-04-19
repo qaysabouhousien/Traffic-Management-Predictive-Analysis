@@ -41,7 +41,6 @@ public class ProgramMangerDao implements UserDao{
         user.setName(resultSet.getString("user_name"));
         user.setPassword(resultSet.getString("password"));
         user.setRegistration_date(resultSet.getDate("registration_date"));
-        user.setRegistrationBy(resultSet.getInt("registration_by"));
         return user;
     }
 
@@ -50,9 +49,6 @@ public class ProgramMangerDao implements UserDao{
     @Override
     public User getUserByName(String name) {
         final String query = "SELECT * FROM program_manger WHERE user_name= ? LIMIT 1";
-
-
-
         try {
             return jdbcTemplate.queryForObject(query, (resultSet, i) -> getUser(resultSet), name);
         }catch (EmptyResultDataAccessException e){

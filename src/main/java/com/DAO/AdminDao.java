@@ -8,8 +8,11 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Array;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Collection;
 
 @Repository
@@ -17,6 +20,7 @@ public class AdminDao implements UserDao {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
+
 
     @Override
     public Collection<User> getUsers() {
@@ -67,7 +71,7 @@ public class AdminDao implements UserDao {
 
     public int addManger(User user) {
 
-        final String query = "INSERT INTO program_manger(user_name,password,registration_by) VALUES(?,?,?)";
+        final String query = "INSERT INTO program_manger(user_name,password) VALUES(?,?)";
 
         ProgramManger programManger = (ProgramManger) user;
 
@@ -76,7 +80,6 @@ public class AdminDao implements UserDao {
         {
             preparedStatement.setString(1, programManger.getName());
             preparedStatement.setString(2, programManger.getPassword());
-            preparedStatement.setInt(3, programManger.getRegistrationBy());
         });
     }
 
@@ -105,8 +108,31 @@ public class AdminDao implements UserDao {
         user.setName(resultSet.getString("user_name"));
         user.setPassword(resultSet.getString("password"));
         user.setRegistration_date(resultSet.getDate("registration_date"));
-        user.setRegistrationBy(resultSet.getInt("registration_by"));
         return user;
+    }
+
+    public int deleteAdminById(int id) {
+        final String query = "DELETE FROM admin_user WHERE id = ?";
+
+        return jdbcTemplate.update(query,id);
+    }
+
+    public int deleteMangerByID(int id) {
+        final String query = "DELETE FROM program_manger WHERE id = ?";
+
+        return jdbcTemplate.update(query,id);
+    }
+
+
+    public int updateUserByType(User user, String type){
+        final String query = "UPDATE "+type+" SET user_name = ?, password = ? WHERE id = ?";
+
+        return jdbcTemplate.update(query, preparedStatement ->
+        {
+            preparedStatement.setString(1,user.getName());
+            preparedStatement.setString(2,user.getPassword());
+            preparedStatement.setString(3 ,user.getId());
+        });
     }
 
 }

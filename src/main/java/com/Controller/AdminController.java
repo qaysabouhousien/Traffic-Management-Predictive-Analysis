@@ -20,12 +20,10 @@ public class AdminController {
     @GetMapping()
     public Collection<User> getAdmins(){return  adminService.getUsers();}
 
-
     @GetMapping(value = "/GetAllUsers")
     public Collection<User> getAllUsers() {
         return adminService.getAllUsers();
     }
-
     @GetMapping(value = "/{id}")
     public User getUserById(@PathVariable("id") int id) {
         return adminService.getUserById(id);
@@ -46,5 +44,24 @@ public class AdminController {
         return adminService.login(user);
     }
 
+    @DeleteMapping(value = "/DeleteAdmin/{id}")
+    public int deleteAdmin(@PathVariable("id") int id){
+        return adminService.deleteAdminById(id);
+    }
+
+    @DeleteMapping(value = "/DeleteManger/{id}")
+    public int deleteManger(@PathVariable("id") int id ){
+        return adminService.deleteMangerById(id);
+    }
+
+    @PutMapping(value = "/UpdateAdmin")
+    public int updateAdmin(@RequestBody Admin admin){
+        return adminService.updateUser(admin);
+    }
+
+    @PutMapping(value = "/UpdateManger")
+    public int updateManger(@RequestBody ProgramManger programManger){
+        return adminService.updateUser(programManger);
+    }
 
 }
