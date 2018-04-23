@@ -49,7 +49,7 @@ public class AdminController {
         return adminService.deleteAdminById(id);
     }
 
-    @DeleteMapping(value = "/DeleteManger/{id}")
+    @DeleteMapping(value = "/DeleteManager/{id}")
     public int deleteManger(@PathVariable("id") int id ){
         return adminService.deleteMangerById(id);
     }
