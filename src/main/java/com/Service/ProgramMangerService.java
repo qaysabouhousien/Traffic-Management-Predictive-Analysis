@@ -42,6 +42,8 @@ public class ProgramMangerService {
 
     public int logIn(User user){
         User userInDb = programMangerDao.getUserByName(user.getName());
+        if(userInDb == null) return -1;
+
         if (user.getName().equalsIgnoreCase(userInDb.getName()) &&
                 passwordEncoder.matches(user.getPassword(),userInDb.getPassword()))
             try {

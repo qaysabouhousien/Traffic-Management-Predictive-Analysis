@@ -34,7 +34,7 @@ public class AdminController {
         return adminService.saveUser(user);
     }
 
-    @PostMapping(value = "/SaveManger")
+    @PostMapping(value = "/SaveManager")
     public int saveUser(@RequestBody ProgramManger user){
         return adminService.saveUser(user);
     }
@@ -59,7 +59,7 @@ public class AdminController {
         return adminService.updateUser(admin);
     }
 
-    @PutMapping(value = "/UpdateManger")
+    @PutMapping(value = "/UpdateManager")
     public int updateManger(@RequestBody ProgramManger programManger){
         return adminService.updateUser(programManger);
     }

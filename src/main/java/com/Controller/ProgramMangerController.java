@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("/ProgramManger")
+@RequestMapping("/ProgramManager")
 public class   ProgramMangerController {
 
     @Autowired
