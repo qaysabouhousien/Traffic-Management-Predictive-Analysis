@@ -32,8 +32,14 @@ public class AdminService {
         try {
             Collection<User> admins = adminDao.getUsers();
             Collection<User> mangers = adminDao.getMangers();
-            admins.stream().forEach(admin -> admin.setType("Admin"));
-            mangers.stream().forEach(manger -> manger.setType("Manger"));
+            admins.stream().forEach(admin -> {
+                admin.setType("Admin");
+                admin.setPassword("");
+            });
+            mangers.stream().forEach(manger -> {
+                manger.setType("Manger");
+                manger.setPassword("");
+            });
 
             admins.addAll(mangers);
             return admins;
