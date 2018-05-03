@@ -27,4 +27,5 @@ public class MajorRoadCountingPointService {
     public Collection<CountingPoint> getRoadCountingPoints(String roadName){
         return majorRoadCountingPointDao.getRoadCountingPoint(roadName);
     }
+
 }

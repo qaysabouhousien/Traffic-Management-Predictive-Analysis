@@ -3,23 +3,22 @@
 library(dplyr)
 library(reshape)
 
-query = "SELECT * FROM major_roads_row_count_data"
+query = "SELECT CP,year,traffic_capacity_ratio FROM updated_addf_data_major"
 traffic = sendQuery(query)
 
 
-cp <- traffic %>% filter(CP == 6001) %>% filter(iDir == "N")
+cp <- traffic %>% filter(CP == 6001) 
 
 
-plot(cp[,"year"],cp[,"ALLMV"])
 
 year2016 <- traffic %>% filter(year == 2016)
 
-justyearandall = traffic[,c("year","CP","AMV")]
+justyearandall = traffic
 
 md <- melt(justyearandall, id=(c("year", "CP")))
 
 casted = cast(md,CP~year+variable)
 
-v = as.numeric(casted[1,2:length(casted)])
+v = as.numeric(casted[4,2:length(casted)])
 timeSeries = ts(v, start = 2000,frequency = 1)
 plot(timeSeries)
