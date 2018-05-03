@@ -29,16 +29,13 @@ public class AddfCountService {
     private Collection<AddfCount> convertMapToCollection(Map<Integer,Collection<AddfStatus>> cps) {
         //        Converting the map into a ADDFCount collection.
         return cps.entrySet().stream()
-                .map(entry -> getCountFromEntry(entry))
+                .map(entry -> new AddfCount(entry.getKey(), entry.getValue()))
                 .collect(Collectors.toList());
-
     }
 
-    private AddfCount getCountFromEntry(Map.Entry<Integer,Collection<AddfStatus>> entry){
-        AddfCount count = new AddfCount();
-        count.setCP(entry.getKey());
-        count.setStatuses(entry.getValue());
-        return count;
+    public Collection<AddfCount> getCurrentRedCPs(int status) {
+        Collection<AddfCount> a = convertMapToCollection(this.addfCountDao.getCurrentRedCPs(status));
+        System.out.println("Number Of CPs : "+a.size());
+        return a;
     }
-
 }

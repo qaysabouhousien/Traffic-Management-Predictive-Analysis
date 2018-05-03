@@ -33,7 +33,17 @@ public class AddfCountDao {
     }
 
 
+    public Map<Integer,Collection<AddfStatus>> getCurrentRedCPs(int status) {
+        final String query = "SELECT cp,year,all_mv,traffic_capacity_ratio,traffic_status" +
+                             " FROM updated_addf_data_major " +
+                             " WHERE cp IN" +
+                                " (SELECT cp FROM updated_addf_data_major" +
+                                " WHERE year =(SELECT MAX(year) FROM updated_addf_data_major)" +
+                                "AND traffic_status =?)";
 
+
+        return jdbcTemplate.query(query, new AddfMapExtractor(),status);
+    }
 }
 
 

@@ -29,6 +29,11 @@ public class AddfCountController {
         return this.addfCountService.getAddfCountById(cp);
     }
 
+    @GetMapping("/GetCPsByCurrentStatus/{Status}")
+    public Collection<AddfCount> getCurrentRedCPs(@PathVariable("Status") int status){
+        return this.addfCountService.getCurrentRedCPs(status);
+    }
+
 
 
 }

@@ -5,10 +5,10 @@ import java.util.Collection;
 public class AddfCount {
 
     private int CP;
-    private Collection<AddfStatus> statuses;
-    public AddfCount(int CP, Collection<AddfStatus> statuses) {
+    private Collection<AddfStatus> statusOverTime;
+    public AddfCount(int CP, Collection<AddfStatus> statusOverTime) {
         this.CP = CP;
-        this.statuses = statuses;
+        this.statusOverTime = statusOverTime;
 
     }
 
@@ -23,11 +23,11 @@ public class AddfCount {
         this.CP = CP;
     }
 
-    public Collection<AddfStatus> getStatuses() {
-        return statuses;
+    public Collection<AddfStatus> getstatusOverTime() {
+        return statusOverTime;
     }
 
-    public void setStatuses(Collection<AddfStatus> statuses) {
-        this.statuses = statuses;
+    public void setstatusOverTime(Collection<AddfStatus> statusOverTime) {
+        this.statusOverTime = statusOverTime;
     }
 }
