@@ -4,6 +4,7 @@ package com.Service;
 import com.DAO.AddfCountDao;
 import com.Entity.AddfCount;
 import com.Entity.AddfStatus;
+import com.Entity.MajorRoadCountingPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Collection;
@@ -26,7 +27,7 @@ public class AddfCountService {
         return convertMapToCollection(this.addfCountDao.getAddfCountById(cp));
     }
 
-    private Collection<AddfCount> convertMapToCollection(Map<Integer,Collection<AddfStatus>> cps) {
+    private Collection<AddfCount> convertMapToCollection(Map<MajorRoadCountingPoint,Collection<AddfStatus>> cps) {
         //        Converting the map into a ADDFCount collection.
         return cps.entrySet().stream()
                 .map(entry -> new AddfCount(entry.getKey(), entry.getValue()))

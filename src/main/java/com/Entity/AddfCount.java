@@ -4,10 +4,11 @@ import java.util.Collection;
 
 public class AddfCount {
 
-    private int CP;
+
+    private MajorRoadCountingPoint point;
     private Collection<AddfStatus> statusOverTime;
-    public AddfCount(int CP, Collection<AddfStatus> statusOverTime) {
-        this.CP = CP;
+    public AddfCount(MajorRoadCountingPoint majorRoadCountingPoint, Collection<AddfStatus> statusOverTime) {
+        this.point = majorRoadCountingPoint;
         this.statusOverTime = statusOverTime;
 
     }
@@ -15,19 +16,19 @@ public class AddfCount {
     public AddfCount() {
     }
 
-    public int getCP() {
-        return CP;
+    public MajorRoadCountingPoint getPoint() {
+        return point;
     }
 
-    public void setCP(int CP) {
-        this.CP = CP;
+    public void setPoint(MajorRoadCountingPoint point) {
+        this.point = point;
     }
 
-    public Collection<AddfStatus> getstatusOverTime() {
+    public Collection<AddfStatus> getStatusOverTime() {
         return statusOverTime;
     }
 
-    public void setstatusOverTime(Collection<AddfStatus> statusOverTime) {
+    public void setStatusOverTime(Collection<AddfStatus> statusOverTime) {
         this.statusOverTime = statusOverTime;
     }
 }

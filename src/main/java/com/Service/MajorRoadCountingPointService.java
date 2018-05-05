@@ -3,6 +3,7 @@ package com.Service;
 
 import com.DAO.MajorRoadCountingPointDao;
 import com.Entity.CountingPoint;
+import com.Entity.MajorRoadCountingPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,16 +16,16 @@ public class MajorRoadCountingPointService {
     MajorRoadCountingPointDao majorRoadCountingPointDao;
 
 
-    public Collection<CountingPoint> getCountingPoints() {
+    public Collection<MajorRoadCountingPoint> getCountingPoints() {
             return majorRoadCountingPointDao.getCountingPoints();
     }
 
-    public CountingPoint getCountingPointById(int id) {
+    public MajorRoadCountingPoint getCountingPointById(int id) {
       return majorRoadCountingPointDao.getCountingPointById(id);
     }
 
 
-    public Collection<CountingPoint> getRoadCountingPoints(String roadName){
+    public Collection<MajorRoadCountingPoint> getRoadCountingPoints(String roadName){
         return majorRoadCountingPointDao.getRoadCountingPoint(roadName);
     }
 

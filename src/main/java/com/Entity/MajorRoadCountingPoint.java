@@ -1,95 +1,64 @@
 package com.Entity;
 
-public class MajorRoadCountingPoint extends CountingPoint{
+import java.util.Objects;
+
+public class MajorRoadCountingPoint{
 
 
-
-    private String aJunction;
-    private String bJunction;
-    private double linkLengthMiles;
+    private int cp;
+    private String region;
+    private String localAuthority;
+    private double latitude;
+    private double longitude;
+    private String road;
+    private String roadName;
+    private String roadCategory;
     private double linkLengthKm;
-    private double aRefE;
-    private double aRefN;
-    private double bRefE;
-    private double bRefN;
 
-    public MajorRoadCountingPoint(){super();}
-
-    public MajorRoadCountingPoint(int cp, String region, String localAuthority, String localAuthorityCode, int sRefE, int sRefN, double sRefLatitude, double sRefLongitude, String road, String roadName, String roadCategory, String aJunction, String bJunction, double linkLengthMiles, double linkLengthKm, double aRefE, double aRefN, double bRefE, double bRefN) {
-        super(cp, region, localAuthority, localAuthorityCode, sRefE, sRefN, sRefLatitude, sRefLongitude, road, roadName, roadCategory);
-        this.aJunction = aJunction;
-        this.bJunction = bJunction;
-        this.linkLengthMiles = linkLengthMiles;
-        this.linkLengthKm = linkLengthKm;
-        this.aRefE = aRefE;
-        this.aRefN = aRefN;
-        this.bRefE = bRefE;
-        this.bRefN = bRefN;
+    public MajorRoadCountingPoint() {
     }
 
-    public String getaJunction() {
-        return aJunction;
+    public MajorRoadCountingPoint(int cp, double latitude, double longitude) {
+        this.cp = cp;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
-    public void setAJunction(String aJunction) {
-        this.aJunction = aJunction;
+    public int getCp() {
+        return cp;
     }
 
-    public String getbJunction() {
-        return bJunction;
+    public void setCp(int cp) {
+        this.cp = cp;
     }
 
-    public void setBJunction(String bJunction) {
-        this.bJunction = bJunction;
+    public double getLatitude() {
+        return latitude;
     }
 
-
-
-    public double getLinkLengthMiles() {
-        return linkLengthMiles;
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
     }
 
-    public void setLinkLengthMiles(double linkLengthMiles) {
-        this.linkLengthMiles = linkLengthMiles;
+    public double getLongitude() {
+        return longitude;
     }
 
-    public double getLinkLengthKm() {
-        return linkLengthKm;
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
-    public void setLinkLengthKm(double linkLengthKm) {
-        this.linkLengthKm = linkLengthKm;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MajorRoadCountingPoint)) return false;
+        MajorRoadCountingPoint that = (MajorRoadCountingPoint) o;
+        return getCp() == that.getCp();
     }
 
-    public double getaRefE() {
-        return aRefE;
-    }
+    @Override
+    public int hashCode() {
 
-    public void setaRefE(double aRefE) {
-        this.aRefE = aRefE;
-    }
-
-    public double getaRefN() {
-        return aRefN;
-    }
-
-    public void setARefN(double aRefN) {
-        this.aRefN = aRefN;
-    }
-
-    public double getbRefE() {
-        return bRefE;
-    }
-
-    public void setBRefE(double bRefE) {
-        this.bRefE = bRefE;
-    }
-
-    public double getbRefN() {
-        return bRefN;
-    }
-
-    public void setBRefN(double bRefN) {
-        this.bRefN = bRefN;
+        return Objects.hash(getCp());
     }
 }
