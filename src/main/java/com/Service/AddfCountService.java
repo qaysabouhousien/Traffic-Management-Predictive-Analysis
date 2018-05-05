@@ -3,13 +3,9 @@ package com.Service;
 
 import com.DAO.AddfCountDao;
 import com.Entity.AddfCount;
-import com.Entity.AddfStatus;
-import com.Entity.MajorRoadCountingPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Collection;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 public class AddfCountService {
@@ -20,23 +16,23 @@ public class AddfCountService {
 
 
     public Collection<AddfCount> getAddfCount(){
-        return convertMapToCollection(this.addfCountDao.getAddfCount());
+        return this.addfCountDao.getAddfCount();
     }
 
     public Collection<AddfCount> getAddfCountById(int cp) {
-        return convertMapToCollection(this.addfCountDao.getAddfCountById(cp));
+        return this.addfCountDao.getAddfCountById(cp);
     }
 
-    private Collection<AddfCount> convertMapToCollection(Map<MajorRoadCountingPoint,Collection<AddfStatus>> cps) {
-        //        Converting the map into a ADDFCount collection.
-        return cps.entrySet().stream()
-                .map(entry -> new AddfCount(entry.getKey(), entry.getValue()))
-                .collect(Collectors.toList());
-    }
 
     public Collection<AddfCount> getCurrentRedCPs(int status) {
-        Collection<AddfCount> a = convertMapToCollection(this.addfCountDao.getCurrentRedCPs(status));
+        Collection<AddfCount> a = this.addfCountDao.getCurrentRedCPs(status);
         System.out.println("Number Of CPs : "+a.size());
         return a;
+    }
+
+    public Collection<AddfCount> getPredictedStatuses() {
+        Collection<AddfCount> addfCounts = this.addfCountDao.getPredictedStatuses();
+        System.out.println("NumberOfPredicted Statuses CPs : "+ addfCounts.size());
+        return addfCounts;
     }
 }

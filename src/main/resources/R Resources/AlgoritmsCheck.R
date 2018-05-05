@@ -1,4 +1,6 @@
 
+
+library(dplyr)
 library(reshape)
 
 query = "SELECT CP,year, traffic_capacity_ratio FROM updated_addf_data_major"
@@ -15,6 +17,7 @@ castTheDF <- function(traffic){
 dataset <- castTheDF(dataset)
 
 dataset <- dataset %>% filter(!is.na(`2016_traffic_capacity_ratio`)) 
+
 # Splitting the dataset into the Training set and Test set 
 library(caTools)
 set.seed(101)
@@ -26,11 +29,9 @@ test_set = subset(dataset, split == FALSE)
 CPS <- training_set[,1]
 training_set[,1] <- NULL
 # training_set[,1:10] <- NULL
-install.packages("randomForest")
-training_set[which(),]
+library(randomForest)
 training_set <-  training_set[complete.cases(training_set), ]
 test_set <- test_set[complete.cases(test_set),]
-library(randomForest)
 DT <- randomForest(x = training_set[-17],
                    y = training_set$`2016_traffic_capacity_ratio`,
                    ntree = 500)

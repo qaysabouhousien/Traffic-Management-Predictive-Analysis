@@ -20,7 +20,8 @@ public class MajorRoadCountingPointDao{
 
     public Collection<MajorRoadCountingPoint> getCountingPoints() {
 
-        final String query ="SELECT cp,longitude,latitude from major_road_counting_point";
+        final String query ="SELECT cp,S_ref_longitude As longitude,S_ref_latitude AS latitude " +
+                            "FROM major_road_counting_point";
         return jdbcTemplate.query(query,((resultSet, i) -> getCountingPoint(resultSet)));
     }
 
@@ -47,7 +48,8 @@ public class MajorRoadCountingPointDao{
     }
 
     public Collection<MajorRoadCountingPoint> getRoadCountingPoint(String roadName) {
-        final String query = "SELECT CP,latitude,longitude FROM major_road_counting_point where road = ? ";
+        final String query = "SELECT CP,S_ref_latitude AS latitude,S_ref_longitude AS longitude " +
+                             "FROM major_road_counting_point where road = ? ";
         try {
             return jdbcTemplate.query(query,((resultSet, i) -> getCountingPoint(resultSet)),roadName);
         }catch (EmptyResultDataAccessException e){

@@ -19,6 +19,11 @@ public class AddfCountController {
     AddfCountService addfCountService;
 
 
+    @GetMapping("/PredictedStatuses")
+    public Collection<AddfCount> getPredictedStatuses(){
+        return this.addfCountService.getPredictedStatuses();
+    }
+
     @GetMapping()
     public Collection<AddfCount> getStatus(){
         return this.addfCountService.getAddfCount();

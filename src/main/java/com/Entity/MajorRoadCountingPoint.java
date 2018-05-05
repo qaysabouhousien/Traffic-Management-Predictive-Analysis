@@ -10,7 +10,6 @@ public class MajorRoadCountingPoint{
     private String localAuthority;
     private double latitude;
     private double longitude;
-    private String road;
     private String roadName;
     private String roadCategory;
     private double linkLengthKm;
@@ -22,6 +21,59 @@ public class MajorRoadCountingPoint{
         this.cp = cp;
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    public MajorRoadCountingPoint(int cp, String region, String localAuthority,
+                                  double latitude, double longitude, String roadName,
+                                  String roadCategory, double linkLengthKm) {
+        this.cp = cp;
+        this.region = region;
+        this.localAuthority = localAuthority;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.roadName = roadName;
+        this.roadCategory = roadCategory;
+        this.linkLengthKm = linkLengthKm;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public String getLocalAuthority() {
+        return localAuthority;
+    }
+
+    public void setLocalAuthority(String localAuthority) {
+        this.localAuthority = localAuthority;
+    }
+
+    public String getRoadName() {
+        return roadName;
+    }
+
+    public void setRoadName(String roadName) {
+        this.roadName = roadName;
+    }
+
+    public String getRoadCategory() {
+        return roadCategory;
+    }
+
+    public void setRoadCategory(String roadCategory) {
+        this.roadCategory = roadCategory;
+    }
+
+    public double getLinkLengthKm() {
+        return linkLengthKm;
+    }
+
+    public void setLinkLengthKm(double linkLengthKm) {
+        this.linkLengthKm = linkLengthKm;
     }
 
     public int getCp() {

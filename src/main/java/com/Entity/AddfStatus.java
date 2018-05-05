@@ -8,9 +8,11 @@ public class AddfStatus {
     private int allMV;
     private double trafficCapacityRatio;
     private int trafficStatus;
+    private String estimationMethod;
 
-    public AddfStatus(int year, int allMV, double trafficCapacityRatio, int trafficStatus) {
+    public AddfStatus(int year,String estimationMethod, int allMV, double trafficCapacityRatio, int trafficStatus) {
         this.year = year;
+        this.estimationMethod= estimationMethod;
         this.allMV = allMV;
         this.trafficCapacityRatio = trafficCapacityRatio;
         this.trafficStatus = trafficStatus;
@@ -30,6 +32,14 @@ public class AddfStatus {
 
     public int getAllMV() {
         return allMV;
+    }
+
+    public String getEstimationMethod() {
+        return estimationMethod;
+    }
+
+    public void setEstimationMethod(String estimationMethod) {
+        this.estimationMethod = estimationMethod;
     }
 
     public void setAllMV(int allMV) {
