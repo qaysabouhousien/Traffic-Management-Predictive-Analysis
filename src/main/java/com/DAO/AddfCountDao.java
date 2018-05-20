@@ -38,8 +38,11 @@ public class AddfCountDao {
                             "addf.traffic_status AS traffic_status,"+
                             " addf.estimation_method AS estimation_method" +
                             " FROM updated_addf_data_major addf INNER JOIN " +
-                            " major_road_counting_point p ON  addf.cp = p.cp" +
-                            " WHERE addf.cp between 501 AND 504";
+                            " major_road_counting_point p ON  addf.cp = p.cp"
+                            + " WHERE addf.cp NOT IN " +
+                                " (SELECT cp FROM updated_addf_data_major" +
+                                " WHERE year =(SELECT MAX(year) FROM updated_addf_data_major)" +
+                                " AND traffic_status =1)";
         return jdbcTemplate.query(query, new AddfMapExtractor());
     }
 
