@@ -41,7 +41,7 @@ public class AdminController {
 
     @PostMapping(value = "/Login"   )
     public int logIn(@RequestBody Admin user){
-        return adminService.login(user);
+        return adminService.logIn(user);
     }
 
     @DeleteMapping(value = "/DeleteAdmin/{id}")

@@ -14,13 +14,12 @@ import java.text.ParseException;
 import java.util.Collection;
 
 @Service
-public class ProgramMangerService {
+public class ProgramMangerService implements UserService{
 
     @Autowired
     ProgramMangerDao programMangerDao;
     @Autowired
     PasswordEncoder passwordEncoder;
-
     public Collection<User> getUsers() {
         try {
             return programMangerDao.getUsers();

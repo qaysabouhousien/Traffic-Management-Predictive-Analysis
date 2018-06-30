@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 
 @Service
-public class AdminService {
+public class AdminService implements UserService{
 
     @Autowired
     AdminDao adminDao;
@@ -50,6 +50,9 @@ public class AdminService {
         }
     }
 
+
+
+
     public User getUserById(int id) {
 
         try {
@@ -70,8 +73,8 @@ public class AdminService {
             return adminDao.addManger(newUser);
         return -1;
     }
-
-    public int login(Admin user) {
+    @Override
+    public int logIn(User user) {
 
         User userInDB = adminDao.getUserByName(user.getName());
         if(userInDB == null) return -1;

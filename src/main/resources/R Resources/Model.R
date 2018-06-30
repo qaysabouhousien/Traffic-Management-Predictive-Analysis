@@ -2,7 +2,7 @@
 library(dplyr)
 library(reshape)
 
-query = "SELECT CP,year, traffic_capacity_ratio FROM updated_addf_data_major"
+query = "SELECT CP,year, traffic_capacity_ratio FROM updated_addf_data_major where year != 2017"
 dataset <- sendQuery(query) 
 
 castTheDF <- function(traffic){
@@ -25,10 +25,10 @@ library(randomForest)
 start_time <- Sys.time()
 forest <- randomForest(x = dataset[,c(1:16)],
                        y = dataset$`17`,
-                      ntree = 500)
+                      ntree = 75)
 end_time <- Sys.time()
 print(end_time - start_time)
-
+plot(forest, main = "Model Error - 75 Tree (The Whole Data )")
 modelSample <- dataset[-1]
 colnames(modelSample) <- c(1:length(modelSample))
 modelSample["17"] <- NA

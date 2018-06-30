@@ -2,7 +2,7 @@
 
 library(dplyr)
 addf = sendQuery("SELECT data.CP,data.estimation_method,data.year,data.fd_all_mv,
-                     point.link_length_km,point.local_Athority,point.number_of_lanes,point.region,
+                     point.link_length_km,point.local_Authority,point.number_of_lanes,point.region,
                      point.road,point.a_junction,point.b_junction,point.road_category,concat(point.S_ref_latitude,',',point.S_ref_longitude)
                      FROM addf_data_major data
                      inner join major_road_counting_point point on data.CP = point.CP 
@@ -38,7 +38,7 @@ capacityRatio =  addf %>% group_by(capacityGroups) %>% count()
 
 capacityRatio$percent = (capacityRatio$n /nrow(addf))*100
 
-plot(capacityRatio[,1:2])
+plot(capacityRatio[,1:2],main = "Traffic Capacity Ratio Distribution",xlab = "Traffic Capacity Ratio", ylab = "Number Of Obs.")
 
 
 max(addf$capacityTrafficRatio)

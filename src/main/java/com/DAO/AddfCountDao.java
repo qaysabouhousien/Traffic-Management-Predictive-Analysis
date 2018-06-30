@@ -42,7 +42,10 @@ public class AddfCountDao {
                             + " WHERE addf.cp NOT IN " +
                                 " (SELECT cp FROM updated_addf_data_major" +
                                 " WHERE year =(SELECT MAX(year) FROM updated_addf_data_major)" +
-                                " AND traffic_status =1)";
+                                " AND traffic_status =1)" +
+                            " AND addf.cp IN " +
+                                " (SELECT cp FROM updated_addf_data_major" +
+                                " WHERE year =(SELECT MAX(year) FROM updated_addf_data_major))";
         return jdbcTemplate.query(query, new AddfMapExtractor());
     }
 
