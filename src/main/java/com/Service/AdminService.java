@@ -5,12 +5,16 @@ import com.DAO.AdminDao;
 import com.Entity.Admin;
 import com.Entity.ProgramManger;
 import com.Entity.User;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class AdminService implements UserService{
@@ -40,9 +44,11 @@ public class AdminService implements UserService{
                 manger.setType("Manger");
                 manger.setPassword("");
             });
-
-            admins.addAll(mangers);
-            return admins;
+            System.out.println(admins);
+            System.out.println(mangers);
+            Collection<User> users =
+                    Stream.concat(admins.stream(),mangers.stream()).collect(Collectors.toList());
+            return users;
         }catch (IncorrectResultSizeDataAccessException e){
             e.printStackTrace();
             return null;
