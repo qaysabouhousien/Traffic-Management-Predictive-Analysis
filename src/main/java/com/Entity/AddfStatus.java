@@ -10,7 +10,8 @@ public class AddfStatus {
     private int trafficStatus;
     private String estimationMethod;
 
-    public AddfStatus(int year,String estimationMethod, int allMV, double trafficCapacityRatio, int trafficStatus) {
+    public AddfStatus(int year,String estimationMethod, int allMV,
+                      double trafficCapacityRatio, int trafficStatus) {
         this.year = year;
         this.estimationMethod= estimationMethod;
         this.allMV = allMV;

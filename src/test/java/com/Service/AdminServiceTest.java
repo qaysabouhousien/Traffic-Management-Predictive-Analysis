@@ -30,8 +30,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {
         ApplicationConfigration.class,
-        AdminTestConfig.class
-}
+        AdminTestConfig.class}
 )
 public class AdminServiceTest {
 

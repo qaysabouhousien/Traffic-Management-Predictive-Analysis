@@ -7,7 +7,8 @@ public class AddfCount {
 
     private MajorRoadCountingPoint point;
     private Collection<AddfStatus> statusOverTime;
-    public AddfCount(MajorRoadCountingPoint majorRoadCountingPoint, Collection<AddfStatus> statusOverTime) {
+    public AddfCount(MajorRoadCountingPoint majorRoadCountingPoint,
+                     Collection<AddfStatus> statusOverTime) {
         this.point = majorRoadCountingPoint;
         this.statusOverTime = statusOverTime;
 
