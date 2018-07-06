@@ -38,7 +38,7 @@ public class ProgramMangerService implements UserService{
             return null;
         }
     }
-
+//    The Same Implementation As in AdminService
     public int logIn(User user){
         User userInDb = programMangerDao.getUserByName(user.getName());
         if(userInDb == null) return -1;

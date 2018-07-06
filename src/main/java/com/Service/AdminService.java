@@ -30,12 +30,15 @@ public class AdminService implements UserService{
         }catch(IncorrectResultSizeDataAccessException e){
             e.printStackTrace();
             return null;
-        }    }
+        }
+    }
 
     public Collection<User> getAllUsers(){
         try {
             Collection<User> admins = adminDao.getUsers();
             Collection<User> mangers = adminDao.getMangers();
+//            After Getting The Admins And Managers From the Dao,
+//            We Assign For Each Admin And Manager Its Type
             admins.stream().forEach(admin -> {
                 admin.setType("Admin");
                 admin.setPassword("");
@@ -46,6 +49,7 @@ public class AdminService implements UserService{
             });
             System.out.println(admins);
             System.out.println(mangers);
+//            Stream.concat() gets Two streams And Merge them into one
             Collection<User> users =
                     Stream.concat(admins.stream(),mangers.stream()).collect(Collectors.toList());
             return users;
@@ -70,8 +74,10 @@ public class AdminService implements UserService{
     }
 
     public int saveUser(User newUser){
-
+//      Encoding The New Password
         newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
+
+//        Checking If its Admin Or Manager In order to call the relevant Dao Method.
         if (newUser instanceof Admin)
             return adminDao.addAdmin(newUser);
 
@@ -81,11 +87,17 @@ public class AdminService implements UserService{
     }
     @Override
     public int logIn(User user) {
-
+//        Getting the User by name from the Dao Instance.
         User userInDB = adminDao.getUserByName(user.getName());
+
+//        If user doesn't Exists It will be null, and we return -1 as Not Available.
         if(userInDB == null) return -1;
+
+//      First We Check if the names Are Equal
+//      and then we user the passwordEncoder to match the Passwords
         if (user.getName().equalsIgnoreCase(userInDB.getName())
                 && passwordEncoder.matches(user.getPassword(), userInDB.getPassword()))
+//            If this condition passes then userName And Password Are Correct.
             try {
                 return Integer.parseInt(userInDB.getId());
             }catch (NumberFormatException e){

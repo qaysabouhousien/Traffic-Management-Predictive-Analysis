@@ -1,0 +1,8 @@
+install.packages("Rserve")
+install.packages("RMySQL")
+install.packages("dplyr")
+install.packages("DMwR")
+install.packages("reshape")
+install.packages('forecast', dependencies = TRUE)
+install.packages("pcse")
+install.packages("randomForest")

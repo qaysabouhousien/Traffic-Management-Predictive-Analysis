@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableWebMvc
 public class WebConfig extends WebMvcConfigurerAdapter {
 
+//    Handling CORS Requests And Allowing Request Methods
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")

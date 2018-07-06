@@ -18,6 +18,8 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+
+// Main Application Dao
 @Repository
 public class AddfCountDao {
 
@@ -28,6 +30,8 @@ public class AddfCountDao {
 
 
     public Collection<AddfCount> getAddfCount(){
+//        In the following query we Exclude points with status equals to 1(GREEN).
+//        AND Also Check if the point has a status in the latest year recorded in the db.
         final String query = "SELECT p.S_ref_longitude AS longitude,p.S_ref_latitude AS latitude," +
                             " addf.estimation_method AS estimation_method," +
                             " p.region AS region, p.local_authority AS local_authority," +
@@ -110,9 +114,9 @@ class AddfMapExtractor
 
 
     /**
-     * @ Author Qays Abou Housien
+     * @Author Qays Abou Housien
      * @param rs
-     * @return Collection<AddfCount
+     * @return Collection<AddfCount>
      * @throws SQLException
      * @throws DataAccessException
       * *********************** *

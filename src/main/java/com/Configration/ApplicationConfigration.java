@@ -18,6 +18,8 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class ApplicationConfigration extends WebSecurityConfigurerAdapter {
 
+
+//    Authenticate the password Encoder
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth)
             throws Exception {
@@ -25,11 +27,14 @@ public class ApplicationConfigration extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder());
     }
 
+//   Creating new BCryptPasswordEncoder instance
     @Bean
     public PasswordEncoder passwordEncoder(){
         PasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder;
     }
+
+//    Disabling CORS Configurations
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();

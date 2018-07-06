@@ -4,6 +4,7 @@ import com.R.Service.RunScriptService;
 import com.R.Service.RConnectionService;
 import org.math.R.Rsession;
 
+// This controller Tests R Integration With A simple Script that Adds two numbers.
 public class TempController {
 
 

@@ -4,7 +4,8 @@ import java.util.Collection;
 
 public class AddfCount {
 
-
+//  Each Addf Count Has MajorRoadCountingPoint Attr which contains the point details
+// And A collection of statuses where each status represents its Addf Count Data in a year.
     private MajorRoadCountingPoint point;
     private Collection<AddfStatus> statusOverTime;
     public AddfCount(MajorRoadCountingPoint majorRoadCountingPoint,

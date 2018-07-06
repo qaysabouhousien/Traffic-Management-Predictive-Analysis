@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
-
+// Not In Use In Client
 @RestController
 @RequestMapping("/MinorCountingPoint")
 public class MinorRoadCountingPointController {

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 
+
+// Not In Use In Client
 @RestController
 @RequestMapping("/TrafficCount")
 public class TrafficCountController {

@@ -105,6 +105,7 @@ public class MajorRoadCountingPoint{
         if (this == o) return true;
         if (!(o instanceof MajorRoadCountingPoint)) return false;
         MajorRoadCountingPoint that = (MajorRoadCountingPoint) o;
+//        If the CP is the same Then its the Same CP.
         return getCp() == that.getCp();
     }
 

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
 
+// Main Application Controller
+// Gets All CPs Data
 @RestController
 @RequestMapping("/Status")
 public class AddfCountController {

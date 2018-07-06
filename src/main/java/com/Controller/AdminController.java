@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
+
+// Admin Have All Authority on Users, He can get All Users, Remove User, Change User And Add New User.
 @RestController
 @RequestMapping("/Admin")
 public class AdminController {
