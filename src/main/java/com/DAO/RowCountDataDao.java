@@ -7,6 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 
+/**
+ * @author - Qays
+ */
 public interface RowCountDataDao {
 
     Collection<RowCountData> getCountDataByCp(int cp);

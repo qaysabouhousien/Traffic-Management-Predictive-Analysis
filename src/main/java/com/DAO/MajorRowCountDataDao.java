@@ -1,5 +1,6 @@
 package com.DAO;
 
+import com.Entity.MajorRoadCountingPoint;
 import com.Entity.MajorRoadRowCountData;
 import com.Entity.RowCountData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +11,21 @@ import org.springframework.stereotype.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
-
+/**
+ * @author - Qays
+ * Repo For reteving data from major_road_row_count_data table
+ */
 @Repository
 public class MajorRowCountDataDao implements RowCountDataDao {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
 
+    /**
+     * Gets Row Count Data For the specific Counting point
+     * @param cp counting point id
+     * @return a collection of {@link RowCountData}
+     */
     @Override
     public Collection<RowCountData> getCountDataByCp(int cp) {
 
@@ -29,6 +38,12 @@ public class MajorRowCountDataDao implements RowCountDataDao {
         }
     }
 
+    /**
+     *  Extract the data from the result set and constructs a {@link RowCountData} object from it
+     * @param resultSet  JDBC ResultSet
+     * @return a {@link RowCountData}
+     * @throws SQLException resultSet Exception
+     */
     @Override
     public RowCountData getCountData(ResultSet resultSet) throws SQLException {
 
@@ -54,6 +69,12 @@ public class MajorRowCountDataDao implements RowCountDataDao {
         return  rowCountData;
     }
 
+    /**
+     *  Gets Count in a specific CP and year.
+     * @param cp counting point id
+     * @param year count year
+     * @return a collection of {@link RowCountData}
+     */
     @Override
     public Collection<RowCountData> getCountDataByCpAndYear(int cp, int year) {
         final String quey = "SELECT * FROM major_roads_row_count_data where CP = ? AND year = ? ";

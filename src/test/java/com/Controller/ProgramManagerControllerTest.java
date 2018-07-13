@@ -1,7 +1,7 @@
 package com.Controller;
 
 
-import com.Configration.ApplicationConfigration;
+import com.Configration.ApplicationConfiguration;
 import com.Entity.ProgramManger;
 import com.Service.ProgramMangerService;
 import org.junit.Test;
@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(ProgramMangerController.class)
-@Import(ApplicationConfigration.class)
+@Import(ApplicationConfiguration.class)
 public class ProgramManagerControllerTest {
 
     @Autowired

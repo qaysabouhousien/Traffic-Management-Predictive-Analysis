@@ -1,7 +1,7 @@
 package com.Controller;
 
 
-import com.Configration.ApplicationConfigration;
+import com.Configration.ApplicationConfiguration;
 import com.Entity.Admin;
 import com.Entity.User;
 import com.Service.AdminService;
@@ -27,7 +27,7 @@ import static org.hamcrest.Matchers.is;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(AdminController.class)
-@Import(ApplicationConfigration.class)
+@Import(ApplicationConfiguration.class)
 public class AdminControllerTest {
 
 

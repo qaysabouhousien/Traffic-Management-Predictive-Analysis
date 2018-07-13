@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 
+/**
+ * @author - Qays
+ */
 public interface CountingPointDao {
 
     Collection<CountingPoint> getCountingPoints();

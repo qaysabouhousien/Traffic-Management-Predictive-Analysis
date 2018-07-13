@@ -1,6 +1,6 @@
 package com.Service;
 
-import com.Configration.ApplicationConfigration;
+import com.Configration.ApplicationConfiguration;
 import com.DAO.ProgramMangerDao;
 import com.Entity.ProgramManger;
 import com.Entity.User;
@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {
-      ApplicationConfigration.class,
+      ApplicationConfiguration.class,
         ManagerTestConfig.class}
 )
 public class ProgramManagerServiceTest {

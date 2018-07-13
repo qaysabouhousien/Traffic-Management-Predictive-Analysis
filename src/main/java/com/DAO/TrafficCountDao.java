@@ -10,6 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 
+/**
+ * Traffic Count dao working with updated_traffic table
+ * @author - Qays
+ */
 @Repository
 public class TrafficCountDao {
 

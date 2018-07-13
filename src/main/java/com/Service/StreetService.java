@@ -7,7 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-// Removed From Client In Development.
+
+/**
+ * Removed From Client In Development.
+ * @author - Qays
+ */
 @Service
 public class StreetService {
 

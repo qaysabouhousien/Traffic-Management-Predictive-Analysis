@@ -19,8 +19,12 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 
-// Main Application Dao
+
 @Repository
+/**
+ * Main Application Dao
+ * @author - Qays
+ */
 public class AddfCountDao {
 
 
@@ -28,10 +32,13 @@ public class AddfCountDao {
     JdbcTemplate jdbcTemplate;
 
 
-
+    /**
+     * In the following query we Exclude points with status equals to 1(GREEN).
+     * AND Also Check if the point has a status in the latest year recorded in the db.
+     * @return list of addf counts
+     */
     public Collection<AddfCount> getAddfCount(){
-//        In the following query we Exclude points with status equals to 1(GREEN).
-//        AND Also Check if the point has a status in the latest year recorded in the db.
+
         final String query = "SELECT p.S_ref_longitude AS longitude,p.S_ref_latitude AS latitude," +
                             " addf.estimation_method AS estimation_method," +
                             " p.region AS region, p.local_authority AS local_authority," +
@@ -53,7 +60,11 @@ public class AddfCountDao {
         return jdbcTemplate.query(query, new AddfMapExtractor());
     }
 
-
+    /**
+     * Gets addf Count for the specific counting point id
+     * @param id counting point id
+     * @return a collection of {@link AddfCount}
+     */
     public  Collection<AddfCount> getAddfCountById(int id){
         final String query = "SELECT p.S_ref_longitude AS longitude,p.S_ref_latitude AS latitude," +
                              " p.region AS region, p.local_authority AS local_authority," +
@@ -68,8 +79,12 @@ public class AddfCountDao {
         return jdbcTemplate.query(query, new AddfMapExtractor(),id);
     }
 
-
-    public Collection<AddfCount> getCurrentRedCPs(int status) {
+    /**
+     * Gets addf Count for the specific status in the most recent year.
+     * @param status counting point id
+     * @return a collection of {@link AddfCount}
+     */
+    public Collection<AddfCount> getCurrentStatusCPs(int status) {
         final String query = "SELECT p.S_ref_longitude AS longitude,p.S_ref_latitude AS latitude," +
                              " p.region AS region, p.local_authority AS local_authority," +
                              " p.road AS road, p.road_category AS road_category" +
@@ -89,6 +104,10 @@ public class AddfCountDao {
         return jdbcTemplate.query(query, new AddfMapExtractor(),status);
     }
 
+    /**
+     * Gets all addf counts for the points which have a Predicated Status
+     * @return a collection of {@link AddfCount}
+     */
     public Collection<AddfCount> getPredictedStatuses() {
         final String query = "SELECT p.S_ref_longitude AS longitude,p.S_ref_latitude AS latitude," +
                 " p.region AS region, p.local_authority AS local_authority," +
@@ -107,24 +126,24 @@ public class AddfCountDao {
 }
 
 
-
-
+/**
+ * ResultSetExtractor Implementation.
+ * @author - Qays
+ */
 class AddfMapExtractor
         implements ResultSetExtractor<Collection<AddfCount>> {
 
 
     /**
-     * @Author Qays Abou Housien
-     * @param rs
-     * @return Collection<AddfCount>
-     * @throws SQLException
-     * @throws DataAccessException
-      * *********************** *
-      * Mapping the One To Many Relation Between The CP And Its Addf Counts Using A Java.util.Map
-      * Map Key : MajorRoadCountingPoint, Java.util.Map Uses
-      * The equals And hashCode Methods to Compare the Keys, Overriding The Methods and using Only
-      * the CP attribute For Comparision.
-      * *********************** *
+     * Mapping the One To Many Relation Between The CP And Its Addf Counts Using A Java.util.Map
+     * Map Key : MajorRoadCountingPoint, Java.util.Map Uses
+     * The equals And hashCode Methods to Compare the Keys, Overriding The Methods and using Only
+     * the CP attribute For Comparision.
+     * @param rs ResultSet
+     * @throws SQLException  results set iteration cases for SqlException Handling
+     * @throws DataAccessException results set iteration cases for DataAccessException Handling
+      *
+      *
      */
     @Override
     public Collection<AddfCount> extractData(ResultSet rs)

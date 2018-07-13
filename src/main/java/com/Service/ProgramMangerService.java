@@ -38,7 +38,15 @@ public class ProgramMangerService implements UserService{
             return null;
         }
     }
-//    The Same Implementation As in AdminService
+
+    /**
+     * first operation is getting the user for the db by userName.
+     * if its null then user doesn't exists and we return -1.
+     * second operation is checking if the passwords are matching.
+     * if true we return userId, else -1.
+     * @param user User object, contains a userName and a password.
+     * @return userId on success/ -1 on failure
+     */
     public int logIn(User user){
         User userInDb = programMangerDao.getUserByName(user.getName());
         if(userInDb == null) return -1;

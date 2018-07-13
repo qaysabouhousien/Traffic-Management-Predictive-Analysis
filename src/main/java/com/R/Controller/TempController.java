@@ -4,10 +4,18 @@ import com.R.Service.RunScriptService;
 import com.R.Service.RConnectionService;
 import org.math.R.Rsession;
 
-// This controller Tests R Integration With A simple Script that Adds two numbers.
+
+
+/**
+ * This controller Tests R Integration With A simple Script that Adds two numbers.
+ * @author - Qays
+ */
 public class TempController {
 
-
+    /**
+     * Reads an R script and calls the function inside it
+     * @return script result
+     */
     public static double StartR(){
         try{
             String scriptName = "JavaRFirstIntegration.R";

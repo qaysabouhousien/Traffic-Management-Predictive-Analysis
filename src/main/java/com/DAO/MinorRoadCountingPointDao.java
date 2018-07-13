@@ -1,6 +1,7 @@
 package com.DAO;
 
 import com.Entity.CountingPoint;
+import com.Entity.MajorRoadCountingPoint;
 import com.Entity.MinorRoadCountingPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -11,17 +12,31 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 
+/**
+ * Repo For pulling data from minor_road_counting_point table
+ * @author - Qays
+ */
 @Repository
 public class MinorRoadCountingPointDao implements CountingPointDao {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
+
+    /**
+     * Gets All counting points
+     * @return a collection of {@link CountingPoint}
+     */
     @Override
     public Collection<CountingPoint> getCountingPoints() {
         final String query ="SELECT * from minor_road_counting_point";
         return jdbcTemplate.query(query,((resultSet, i) -> getCountingPoint(resultSet)));
     }
 
+    /**
+     * Gets Counting point by id
+     * @param id counting point id
+     * @return a {@link CountingPoint}
+     */
     @Override
     public CountingPoint getCountingPointById(int id) {
         final String query = "SELECT * from minor_road_counting_point where CP =? limit 1";
@@ -32,7 +47,12 @@ public class MinorRoadCountingPointDao implements CountingPointDao {
         }
     }
 
-
+    /**
+     *  Extract the data from the result set and constructs a {@link MinorRoadCountingPoint} object from it
+     * @param resultSet  JDBC ResultSet
+     * @return a {@link MinorRoadCountingPoint}
+     * @throws SQLException resultSet Exception
+     */
     @Override
     public CountingPoint getCountingPoint(ResultSet resultSet) throws SQLException {
         MinorRoadCountingPoint cp = new MinorRoadCountingPoint();
@@ -52,6 +72,11 @@ public class MinorRoadCountingPointDao implements CountingPointDao {
         return cp;
     }
 
+    /**
+     * Gets specific Road Counting points
+     * @param roadName Road Name
+     * @return a collection of {@link MinorRoadCountingPoint}
+     */
     @Override
     public Collection<CountingPoint> getRoadCountingPoint(String roadName) {
         final String query = "SELECT * FROM minor_road_counting_point where road = ? ";

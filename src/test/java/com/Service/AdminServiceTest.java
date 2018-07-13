@@ -1,7 +1,7 @@
 package com.Service;
 
 
-import com.Configration.ApplicationConfigration;
+import com.Configration.ApplicationConfiguration;
 import com.DAO.AdminDao;
 import com.Entity.Admin;
 import com.Entity.ProgramManger;
@@ -16,7 +16,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.util.SerializationUtils;
 
 import java.sql.Date;
 import java.util.Arrays;
@@ -29,7 +28,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {
-        ApplicationConfigration.class,
+        ApplicationConfiguration.class,
         AdminTestConfig.class}
 )
 public class AdminServiceTest {

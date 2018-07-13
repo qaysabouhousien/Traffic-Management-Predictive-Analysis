@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
 
-// Removed From Client In Development.
+/**
+ * Removed From Client In Development.
+ * @author - Qays
+ */
 @RestController
 @RequestMapping("/Streets")
 public class StreetsController {
@@ -18,6 +21,10 @@ public class StreetsController {
     @Autowired
     StreetService streetService;
 
+    /**
+     * gets all streets
+     * @return list of all streets
+     */
     @GetMapping()
     public Collection<Street> getAllStreets(){
         return this.streetService.getAllStreets();

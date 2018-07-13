@@ -2,12 +2,22 @@ package com.Entity;
 
 import java.util.Collection;
 
+/**
+ *
+ * @author - Qays
+ */
 public class AddfCount {
 
-//  Each Addf Count Has MajorRoadCountingPoint Attr which contains the point details
-// And A collection of statuses where each status represents its Addf Count Data in a year.
+
     private MajorRoadCountingPoint point;
     private Collection<AddfStatus> statusOverTime;
+
+    /**
+     * Each Addf Count Has MajorRoadCountingPoint Attr which contains the point details
+     * And A collection of statuses where each status represents its Addf Count Data in a year.
+     * @param majorRoadCountingPoint counting point that is related the the specific status
+     * @param statusOverTime a collection of addf Statuses for the counting point over the years.
+     */
     public AddfCount(MajorRoadCountingPoint majorRoadCountingPoint,
                      Collection<AddfStatus> statusOverTime) {
         this.point = majorRoadCountingPoint;

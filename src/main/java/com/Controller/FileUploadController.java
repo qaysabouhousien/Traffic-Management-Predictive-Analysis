@@ -16,27 +16,44 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 
-// TODO miss Implementation in client
+/**
+ * TODO miss Implementation in client
+ * @author - Qays
+ */
 @RestController
 @RequestMapping("/Upload")
 public class FileUploadController {
 
     @Autowired
     DataSetService dataSetService;
-//  Save File Details Like name, UploadDate, Size, ...
+
+    /**
+     * Save File Details Like name, UploadDate, Size, ...
+     * @param dataSet {@link DataSet}
+     * @return 1 on success, -1 on failure
+     */
     @RequestMapping(value = "/SaveDetails",method = RequestMethod.POST)
     public int saveDataSetDetails(@RequestBody DataSet dataSet){
         return dataSetService.saveFileDetails(dataSet);
     }
 
-//  Saving The Actual File In the Server
+
+    /**
+     * Saving The Actual File In the Server
+     * @param file {@link MultipartFile}
+     * @return 1 on success, -1 on failure
+     */
     @PostMapping(value = "/SaveFile") // //new annotation since 4.3
     public int singleFileUpload(@RequestParam("file") MultipartFile file) {
         return dataSetService.saveFile(file);
     }
 
-//    Starting R Test Script.
-//    TODO miss Implementation Of Possessing Real File Data.
+
+    /**
+     * Starting R Test Script.
+     * TODO miss Implementation Of Possessing Real File Data.
+     * @return script result
+     */
     @GetMapping(value = "/StartR")
     public double startR(){
         return dataSetService.startR();

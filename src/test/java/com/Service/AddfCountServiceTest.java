@@ -1,9 +1,8 @@
 package com.Service;
 
 
-import com.Configration.ApplicationConfigration;
+import com.Configration.ApplicationConfiguration;
 import com.DAO.AddfCountDao;
-import com.DAO.AdminDao;
 import com.Entity.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,7 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {
-        ApplicationConfigration.class,
+        ApplicationConfiguration.class,
         AddfCountServiceTestConfig.class}
 )
 public class AddfCountServiceTest {

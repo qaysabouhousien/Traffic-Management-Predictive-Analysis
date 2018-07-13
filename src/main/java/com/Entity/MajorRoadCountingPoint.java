@@ -100,12 +100,17 @@ public class MajorRoadCountingPoint{
         this.longitude = longitude;
     }
 
+    /**
+     * checks if the counting points ids are equal.
+     * @param o - Other counting Point
+     * @return boolean
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof MajorRoadCountingPoint)) return false;
         MajorRoadCountingPoint that = (MajorRoadCountingPoint) o;
-//        If the CP is the same Then its the Same CP.
+
         return getCp() == that.getCp();
     }
 
